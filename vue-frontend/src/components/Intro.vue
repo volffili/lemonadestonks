@@ -40,15 +40,24 @@
         <input v-model="stonk" name="stonk" placeholder="Enter your favourite stonk!"/>
     </form>
     <h3>If you buy $100 of shares you will own 0.0083% of Tesla. Tesla's profit is $3 annualy for every $100 invested!</h3>
-    <img class="process" src="../assets/process.svg">
-    <h3>If Tesla was a lemonade stand it would buy lemons for $17</h3>
+    <LemonadeCompany id="lemonadeCompany"/>
+    <div class="hintDiv">
+      <div class="hint"><h3 id="lemon">Buying lemons</h3></div>
+      <div class="hint"><h3 id="mixer">Making lemonade, paying wages</h3></div>
+      <div class="hint"><h3 id="lemonade">Selling lemonade, profit</h3></div>
+      <div class="hint"><h3 id="netincome">Net income</h3></div>
+    </div>
   </div>
 </template>
 
 <script>
 import {ref} from 'vue'; 
+import LemonadeCompany from './LemonadeCompany.vue'
 
-export default {
+export default {  
+  components: {
+    LemonadeCompany
+  },
   setup(){
     const stonk = ref(''); 
     function submitStonk(){
@@ -65,7 +74,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.hintDiv{
+  display: flex;
+  justify-content: center;
+  width:100%;
+}
+.hint{
+  position: absolute;
+}
+#lemon{
+  animation: fadeIn 20.5s ease-in-out 0s infinite both;
+}
+#mixer{
+  animation: fadeIn 20.5s ease-in-out 5s infinite both;
+}
+#lemonade{
+  animation: fadeIn 20.5s ease-in-out 10s infinite both;
+}
+#netincome{
+  animation: fadeIn 20.5s ease-in-out 15s infinite both;
+}
+#lemonadeCompany{
+  margin: 3vh 0;
+  width:100%
+}
 .process{
   margin: 5vh 0;
   width:100%;
@@ -115,6 +147,15 @@ input::placeholder{
 .arrowAnim {
   margin-top: 3rem;
   animation: action 1s infinite alternate;
+}
+
+
+@keyframes fadeIn {
+  0%  { opacity: 0; }
+  5% { opacity: 1 }
+  20% { opacity: 1 }
+  25%   { opacity: 0;}
+  100%   { opacity: 0 }
 }
 
 @keyframes shake {
